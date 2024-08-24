@@ -22,7 +22,7 @@ func loadEnv() {
 
 func daily_notic(dg *discordgo.Session) *cron.Cron {
 	c := cron.New()
-	_, err := c.AddFunc("47 3 * * *", func() {
+	_, err := c.AddFunc("0 8 * * *", func() {
 		channelID := os.Getenv("CHANNEL_ID")
 		_, err := dg.ChannelMessageSend(channelID, "좋은 아침이에요, 오늘 할 일을 공유해주세요!")
 		if err != nil {
