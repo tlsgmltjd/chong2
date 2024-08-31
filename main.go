@@ -59,7 +59,7 @@ func addMondayStudyReminder(c *cron.Cron, dg *discordgo.Session) {
 }
 
 func addWeekendReminder(c *cron.Cron, dg *discordgo.Session) {
-	_, err := c.AddFunc("0 15 * * 5,6,0", func() {
+	_, err := c.AddFunc("0 15 * * 6,0", func() {
 		channelID := os.Getenv("DAILY_CHANNEL_ID")
 		_, err := dg.ChannelMessageSend(channelID, "주말에도 정진합시다! ☺️")
 		if err != nil {
@@ -83,7 +83,7 @@ func addCorn(dg *discordgo.Session) *cron.Cron {
 	// 매주 월요일 오후 1시 스터디 알림
 	addMondayStudyReminder(c, dg)
 
-	// 매주 금, 토, 일 오후 3시 주말 알림
+	// 매주 토, 일 오후 3시 주말 알림
 	addWeekendReminder(c, dg)
 
 	return c
